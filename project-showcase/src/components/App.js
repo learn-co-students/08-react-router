@@ -1,9 +1,12 @@
 // 🚧 Break Out Activity 1: Using <Switch> and <Route>, build out separate pages for <ProjectForm>, <ProjectList>, and <Home> in App.js.
   // ❗ Navigate to the appropriate URLs to check your work!   
-  // 💡 Consider using self-closing Route syntax via "component" attribute (component={?})
+  // 💡 Extra Credit: Consider using self-closing Route syntax via "component" attribute (component={?})
 
 // 🚧 Break Out Activity 2: Add a <Link> for each <ProjectItem> that will take the User to the corresponding <ProjectDetail> page.
   // 💡 Extra Credit: Using useHistory(), add a <Link> for each <ProjectDetail> page that will take the User back to “/projects”
+
+// react-router-dom Imports
+import { Route, Switch } from 'react-router-dom';
 
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
@@ -32,8 +35,15 @@ function App() {
     setProjects(newProjectArray);
   }
 
+  // function someFunction() {
+      // return (
+      //   <ProjectForm onAddProject={handleAddProject} />
+      // )
+  // }
+
   return (
     <div className={isDarkMode ? "App" : "App light"}>
+      {/* This component should appear the same across our applications. */}
       <Header
         title="Science Fair"
         isDarkMode={isDarkMode}
@@ -41,10 +51,37 @@ function App() {
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}
       />
-      <Home />
-      <ProjectForm onAddProject={handleAddProject} />
-      <ProjectList projects={projects} />
-      <ProjectDetail />
+
+      <Switch>
+        {/* /projects/new */}
+        <Route path="/projects/new">
+          <ProjectForm onAddProject={handleAddProject} />
+        </Route>
+
+        {/* Self-Closing Syntax => 
+        
+        <Route path="/projects/new" component={someFunction} />
+
+        */}
+
+        {/* /projects */}
+        <Route path="/projects">
+          <ProjectList projects={projects} />
+        </Route>
+
+        {/* / */}
+        <Route path="/">
+          <Home />
+        </Route>
+
+        <Route to="/" component={Home} />
+        {/* Self-Closing Syntax => <Route component={} /> */}
+      </Switch>
+
+
+      {/* SAVE FOR LATER */}
+      {/* /projects/:id */}
+      {/* <ProjectDetail /> */}
     </div>
   );
 }
