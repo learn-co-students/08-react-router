@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 // react-router-dom Imports
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory, Link } from 'react-router-dom';
 
 function ProjectDetail() {
   const [claps, setClaps] = useState(0);
@@ -11,6 +11,12 @@ function ProjectDetail() {
   // console.log(useParams());
 
   const id = useParams().id;
+
+  // console.log(useHistory());
+  let history = useHistory();
+  console.log(history);
+
+  // console.log(history.location.pathname);
 
   useEffect(() => {
     fetch(`http://localhost:3000/projects/${id}`)
@@ -46,6 +52,10 @@ function ProjectDetail() {
               <a target="_blank" rel="noreferrer" href={link}>
                 Project Homepage
               </a>
+              <br />
+              <Link onClick={() => history.push("/projects")}>
+                Go Back
+              </Link>
             </p>
           ) : null}
           <div className="extra">
