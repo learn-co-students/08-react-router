@@ -53,6 +53,11 @@ function App() {
       />
 
       <Switch>
+        {/* /projects/:id */}
+        <Route path="/projects/:id">
+          <ProjectDetail /> 
+        </Route>
+        
         {/* /projects/new */}
         <Route path="/projects/new">
           <ProjectForm onAddProject={handleAddProject} />
@@ -74,14 +79,9 @@ function App() {
           <Home />
         </Route>
 
-        <Route to="/" component={Home} />
+        {/* <Route to="/" component={Home} /> */}
         {/* Self-Closing Syntax => <Route component={} /> */}
       </Switch>
-
-
-      {/* SAVE FOR LATER */}
-      {/* /projects/:id */}
-      {/* <ProjectDetail /> */}
     </div>
   );
 }
