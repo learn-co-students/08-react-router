@@ -59,8 +59,11 @@ function ProjectDetail() {
           ) : null}
           <div className="extra">
             <span className="badge blue">Phase {phase}</span>
-            <Link to={history} />
           </div>
+          <br />
+          <Link onClick={() => history.push("/projects")}>
+            Back To Projects
+          </Link>
         </div>
       </div>
     </section>
