@@ -1,5 +1,8 @@
 import React from "react";
 
+// react-router-dom Imports
+import { NavLink } from 'react-router-dom';
+
 function Header({
   title,
   logo = "//",
@@ -27,12 +30,28 @@ function Header({
         {title}
       </h1>
       <nav>
-        <a className="button" href="/projects">
+        <NavLink 
+          className="button" 
+          // If you wish to use activeStyles
+          // activeStyle={{ color: 'black' }}
+          exact to="/projects">
+          All Projects
+        </NavLink>
+        
+        <NavLink 
+          className="button" 
+          // If you wish to use activeStyles
+          // activeStyle={{ color: 'black' }}
+          exact to="/projects/new">
+          Add Project
+        </NavLink>
+        
+        {/* <a className="button" href="/projects">
           All Projects
         </a>
         <a className="button" href="/projects/new">
           Add Project
-        </a>
+        </a> */}
         {currentUser ? (
           <button onClick={logout}>Logout</button>
         ) : (
